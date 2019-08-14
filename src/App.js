@@ -10,6 +10,7 @@ class App extends Component {
       {name: 'Mazda', year: 2012},
     ],
     pageTitle: 'React Components',
+    showCars:  false,
   }
 
   handleButtonCkick = (newTitle) => {
@@ -18,21 +19,25 @@ class App extends Component {
 
       this.changeTitle(newTitle);
   }
-  
-  changeTitle  = (title) => {
-    console.log('in title change');
 
-    const newTitle = title;
-
-    this.setState({
-      pageTitle:newTitle
-    });
+  changeTitle = pageTitle => {
+    this.setState({pageTitle})
   }
+  
+  // changeTitle  = (title) => {
+  //   console.log('in title change');
 
-  handleInput = (event)=> {
-    console.log('Input changed', event.target.value);
+  //   const newTitle = title;
+
+  //   this.setState({
+  //     pageTitle:newTitle
+  //   });
+  // }
+
+  toggleCarsHandler = () => {
+    console.log('In toggleCarsHandler');
     this.setState({
-      pageTitle: event.target.value
+      showCars: !this.state.showCars 
     })
   }
 
@@ -41,21 +46,34 @@ class App extends Component {
     const divStyle = {
       textAlign: 'center',
     }
+    
+let cars = null
+if (this.state.showCars) {
+  cars = this.state.cars.map((car, index) => {
+    return (
+      <Car 
 
-
-
+        key = {index}
+        index = {index} dc
+        name = {car.name} 
+        year = {car.year}
+        onChangeTitle = {() => this.changeTitle(car.name)} 
+      />
+    )
+  })
+}
 
     return (
       <div style={divStyle} >
         <h1>{this.state.pageTitle}</h1>
 
-        <input type = "text" onChange={this.handleInput}/>
-
         <button 
-          onClick={this.handleButtonCkick.bind(this, 'Changed!')}
-          >Change title</button>
+          onClick={this.toggleCarsHandler}
+          >Toggle cars</button>
 
-          { this.state.cars.map((car, index) => {
+          {/* { this.state.showCars
+            
+            ? this.state.cars.map((car, index) => {
             return (
               <Car 
 
@@ -66,11 +84,15 @@ class App extends Component {
                 onChangeTitle = {() => this.changeTitle(car.name)} 
               />
             )
-          }) }
+          }) 
+          : null
+        } */}
+
+        { cars }
       
       </div>
-    );
-  }s
+    )
+  }
 }
 
 export default App;
