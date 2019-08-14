@@ -25,9 +25,10 @@ import React from 'react';
 // export default Car
 
 //4
-export default () => (
+export default (props) => (
     <div>
-        <p>This is react component</p>
-        <p>{Math.random()}</p>
+        <h3>Car name: {props.name}</h3>
+        <p>Year: <strong>{props.year}</strong></p>
+        {props.children}
     </div>
 )
