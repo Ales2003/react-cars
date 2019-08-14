@@ -12,26 +12,23 @@ class App extends Component {
     pageTitle: 'React Components',
   }
 
-  handleButtonCkick = () => {
+  handleButtonCkick = (newTitle) => {
       console.log('in handleButtonCkick');
       console.log('button clicked');
 
-      this.changeTitle('chnged');
+      this.changeTitle(newTitle);
   }
   
-  changeTitle  = () => {
+  changeTitle  = (title) => {
     console.log('in title change');
 
-    const oldTitle = this.state.pageTitle;
-    const newTitle = oldTitle + ' (changed)';
+    //const oldTitle = this.state.pageTitle;
+    //const newTitle = oldTitle + ' ' +title;
+    const newTitle = title;
 
     this.setState({
       pageTitle:newTitle
     });
-  }
-
-  getNumber  = () => {
-    return 1;
   }
 
   render (){
@@ -47,19 +44,25 @@ class App extends Component {
       <div style={divStyle} >
         <h1>{this.state.pageTitle}</h1>
 
-        <button onClick={this.handleButtonCkick}>Change title</button>
+        <button onClick={this.handleButtonCkick.bind(this, 'Changed!')}>Change title</button>
 
+        {/* байндинг. байндинг не вызывает ф-ю, а привязывает ее к this. также передаем параметры  */}
+        {/* лучше для браузера, т.к.  меньше ресурсов требует  */}
         <Car 
         name={cars[0].name} 
         year = {cars[0].year}
-        onChangeTitle={this.changeTitle}
-        num={this.getNumber}/>
+        onChangeTitle={this.changeTitle.bind(this, cars[0].name)}/>
+
+        {/* передаем функцию, и при нажатии в чилде вызывается внутренняя функция */}
         <Car 
         name={cars[1].name} 
-        year = {cars[1].year}/>
+        year = {cars[1].year}
+        onChangeTitle={() => this.changeTitle(cars[1].name)}/> 
+        
         <Car 
         name={cars[2].name} 
-        year = {cars[2].year}/>
+        year = {cars[2].year}
+        onChangeTitle={() => this.changeTitle(cars[2].name)}/> 
       </div>
     );
   }s
