@@ -20,25 +20,47 @@ class App extends Component {
       this.changeTitle(newTitle);
   }
 
-  changeTitle = pageTitle => {
-    this.setState({pageTitle})
+  changeName = (name, index) => {
+    const car = this.state.cars[index];
+    car.name = name;
+    
+    //not allowed 
+    //this.state.cars[index] = car;
+    
+    //not allowed, because we get link
+    //const cars = this.state.cars;
+
+    //1. cloning 
+    //const cars = this.state.cars.concat(); 
+    
+    //modern
+    const cars = [...this.state.cars];
+    cars[index] = car;
+    this.setState({
+      //если совпадают ключ и значение - можно не писать cars: cars
+      cars
+    })
+
   }
-  
-  // changeTitle  = (title) => {
-  //   console.log('in title change');
 
-  //   const newTitle = title;
-
-  //   this.setState({
-  //     pageTitle:newTitle
-  //   });
-  // }
-
-  toggleCarsHandler = () => {
+  toggleCarsHandler = (index) => {
     console.log('In toggleCarsHandler');
     this.setState({
       showCars: !this.state.showCars 
     })
+  }
+
+  deleteHandler (index) {
+    console.log('Delete');
+    console.log(this.state.pageTitle);
+    
+    const cars = this.state.cars.concat(); 
+    cars.splice(index, 1);
+
+    this.setState({
+      cars
+    })
+
   }
 
   render (){
@@ -47,21 +69,22 @@ class App extends Component {
       textAlign: 'center',
     }
     
-let cars = null
-if (this.state.showCars) {
-  cars = this.state.cars.map((car, index) => {
-    return (
-      <Car 
-
-        key = {index}
-        index = {index} dc
-        name = {car.name} 
-        year = {car.year}
-        onChangeTitle = {() => this.changeTitle(car.name)} 
-      />
-    )
-  })
-}
+    let cars = null
+    
+    if (this.state.showCars) {
+      cars = this.state.cars.map((car, index) => {
+        return (
+          <Car 
+            key = {index}
+            index = {index} dc
+            name = {car.name} 
+            year = {car.year}
+            onChangeName = {event => this.changeName(event.target.value, index)} 
+            onDelete={this.deleteHandler.bind(this, index)}
+          />
+        )
+      })
+    }
 
     return (
       <div style={divStyle} >
@@ -88,7 +111,7 @@ if (this.state.showCars) {
           : null
         } */}
 
-        { cars }
+        { cars}
       
       </div>
     )
