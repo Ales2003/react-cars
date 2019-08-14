@@ -24,4 +24,10 @@ import React from 'react';
 //
 // export default Car
 
-export default () => <div>This is react component 4 </div>
+//4
+export default () => (
+    <div>
+        <p>This is react component</p>
+        <p>{Math.random()}</p>
+    </div>
+)
