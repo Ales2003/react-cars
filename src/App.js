@@ -28,7 +28,11 @@ class App extends Component {
     this.setState({
       pageTitle:newTitle
     });
-}
+  }
+
+  getNumber  = () => {
+    return 1;
+  }
 
   render (){
     console.log('in title change');
@@ -45,9 +49,17 @@ class App extends Component {
 
         <button onClick={this.handleButtonCkick}>Change title</button>
 
-        <Car name={cars[0].name} year = {cars[0].year}/>
-        <Car name={cars[1].name} year = {cars[1].year}/>
-        <Car name={cars[2].name} year = {cars[2].year}/>
+        <Car 
+        name={cars[0].name} 
+        year = {cars[0].year}
+        onChangeTitle={this.changeTitle}
+        num={this.getNumber}/>
+        <Car 
+        name={cars[1].name} 
+        year = {cars[1].year}/>
+        <Car 
+        name={cars[2].name} 
+        year = {cars[2].year}/>
       </div>
     );
   }s
