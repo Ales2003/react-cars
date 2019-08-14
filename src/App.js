@@ -5,7 +5,7 @@ import Car from  './Car/Car';
 class App extends Component {
   state = {
     cars: [
-      {name: 'Ford', year: 2018},
+      {name: 'Ford', year: 2012},
       {name: 'Audi', year: 2016},
       {name: 'Mazda', year: 2012},
     ],
@@ -22,8 +22,6 @@ class App extends Component {
   changeTitle  = (title) => {
     console.log('in title change');
 
-    //const oldTitle = this.state.pageTitle;
-    //const newTitle = oldTitle + ' ' +title;
     const newTitle = title;
 
     this.setState({
@@ -44,7 +42,7 @@ class App extends Component {
       textAlign: 'center',
     }
 
-    const cars = this.state.cars;
+
 
 
     return (
@@ -53,25 +51,23 @@ class App extends Component {
 
         <input type = "text" onChange={this.handleInput}/>
 
-        <button onClick={this.handleButtonCkick.bind(this, 'Changed!')}>Change title</button>
+        <button 
+          onClick={this.handleButtonCkick.bind(this, 'Changed!')}
+          >Change title</button>
 
-        {/* байндинг. байндинг не вызывает ф-ю, а привязывает ее к this. также передаем параметры  */}
-        {/* лучше для браузера, т.к.  меньше ресурсов требует  */}
-        <Car 
-        name={cars[0].name} 
-        year = {cars[0].year}
-        onChangeTitle={this.changeTitle.bind(this, cars[0].name)}/>
+          { this.state.cars.map((car, index) => {
+            return (
+              <Car 
 
-        {/* передаем функцию, и при нажатии в чилде вызывается внутренняя функция */}
-        <Car 
-        name={cars[1].name} 
-        year = {cars[1].year}
-        onChangeTitle={() => this.changeTitle(cars[1].name)}/> 
-        
-        <Car 
-        name={cars[2].name} 
-        year = {cars[2].year}
-        onChangeTitle={() => this.changeTitle(cars[2].name)}/> 
+                key = {index}
+                index = {index} dc
+                name = {car.name} 
+                year = {car.year}
+                onChangeTitle = {() => this.changeTitle(car.name)} 
+              />
+            )
+          }) }
+      
       </div>
     );
   }s
