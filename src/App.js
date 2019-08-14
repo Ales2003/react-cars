@@ -13,14 +13,25 @@ class App extends Component {
   }
 
   handleButtonCkick = () => {
-      console.log('clicked');
+      console.log('in handleButtonCkick');
+      console.log('button clicked');
 
-      handleInner(){
-        console.log('clickedInner');
-    }
+      this.changeTitle('chnged');
   }
   
+  changeTitle  = () => {
+    console.log('in title change');
+
+    const oldTitle = this.state.pageTitle;
+    const newTitle = oldTitle + ' (changed)';
+
+    this.setState({
+      pageTitle:newTitle
+    });
+}
+
   render (){
+    console.log('in title change');
     const divStyle = {
       textAlign: 'center',
     }
