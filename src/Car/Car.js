@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 class Car extends Component {
 
     constructor(props){
@@ -60,9 +61,9 @@ class Car extends Component {
     render (){
         console.log('Car render');
 
-        if(Math.random() > 0.7){
-            throw new Error('Car random failed')
-        }
+        // if(Math.random() > 0.7){
+        //     throw new Error('Car random failed')
+        // }
 
         return(
             <div style={{
