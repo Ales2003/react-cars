@@ -1,24 +1,25 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import classes from './Car.css'
+import PropTypes from 'prop-types'
 import withCssClass from '../hoc/withCssClass'
 
 class Car extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         console.log('Car constructor', props);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log('Car componentDidMount - after render')
-      }
+    }
 
-    UNSAFE_componentWillReceiveProps(nextProps){
+    UNSAFE_componentWillReceiveProps(nextProps) {
         console.log('Car componentWillReceiveProps', nextProps);
         //для синхронизации локального стейт с новыми пропс
     }
 
-    shouldComponentUpdate(nextProps, nextState){
+    shouldComponentUpdate(nextProps, nextState) {
         //можно сделать проверку и вернгуть false 
         //не будут вызываться остальные апдейт методы и рендер 
         //(чтобы удучшить перфоманс, не тратить силы на отрисовки)
@@ -27,12 +28,12 @@ class Car extends Component {
         return nextProps.name.trim() !== this.props.name.trim();
     }
 
-    UNSAFE_componentWillUpdate(nextProps, nextState){
+    UNSAFE_componentWillUpdate(nextProps, nextState) {
         //если true в предыдущзем методе
         //какая-то синхронизхация лок стейт с новыми пропс 
         console.log('Car componentWillUpdate', nextProps, nextState);
     }
-    
+
     //componentWillUpdate
     //опасность: если обратимся this.state, но компонент еще нге отрисован
 
@@ -45,7 +46,7 @@ class Car extends Component {
     //     }
     // }
 
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps, prevState) {
         console.log('Car componentDidUpdate', prevProps, prevState);
     }
 
@@ -55,31 +56,36 @@ class Car extends Component {
     //     console.log('C ar getSnapshotBeforeUpdate');
     // }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log('Car componentWillUnmount');
     }
 
-    render (){
+    render() {
         console.log('Car render');
 
         // if(Math.random() > 0.7){
         //     throw new Error('Car random failed')
         // }
 
-        return(
+        return (
             // <div className={classes.Car}>
             <Fragment>
-            <h3>Car name: {this.props.name}</h3>
-            <p>Year: <strong>{this.props.year}</strong></p>
-            <input type="text" onChange={this.props.onChangeName} value = {this.props.name}/>
-            <button onClick={this.props.onDelete}>Delete</button>
+            <h3 > Car name: { this.props.name } </h3> 
+            <p> Year: <strong> { this.props.year } </strong></p>
+            <input type = "text" onChange = { this.props.onChangeName } value = { this.props.name }/> 
+            <button onClick = { this.props.onDelete } > Delete </button> 
             </Fragment>
-            // </div>
-            
+            //</div>
         )
     }
 }
 
+Car.propTypes = {
+    name: PropTypes.string.isRequired,
+    year: PropTypes.number,
+    onChangeName: PropTypes.func,
+    onDelete: PropTypes.func,
+}
 
 // export default Car
 export default withCssClass(Car, classes.Car)
