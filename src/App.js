@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       cars: [
         {name: 'Ford', year: 2012},
-        {name: 'Audi', year: {}},
+        {name: 'Audi', year: 2156},
         {name: 'Mazda', year: 2012},
       ],
       pageTitle: 'React Components',
@@ -88,6 +88,7 @@ class App extends Component {
             <Car 
               name = {car.name} 
               year = {car.year}
+              index = {index}
               onChangeName = {event => this.changeName(event.target.value, index)} 
               onDelete={this.deleteHandler.bind(this, index)}
             />
