@@ -12,7 +12,7 @@ class App extends Component {
     pageTitle: 'React Components',
     showCars:  false,
   }
-
+  
   handleButtonCkick = (newTitle) => {
       console.log('in handleButtonCkick');
       console.log('button clicked');
@@ -88,7 +88,8 @@ class App extends Component {
 
     return (
       <div style={divStyle} >
-        <h1>{this.state.pageTitle}</h1>
+        {/* <h1>{this.state.pageTitle}</h1> */}
+        <h1>{this.props.title}</h1>
 
         <button 
           onClick={this.toggleCarsHandler}
