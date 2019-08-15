@@ -3,14 +3,19 @@ import './App.css';
 import Car from  './Car/Car';
 
 class App extends Component {
-  state = {
-    cars: [
-      {name: 'Ford', year: 2012},
-      {name: 'Audi', year: 2016},
-      {name: 'Mazda', year: 2012},
-    ],
-    pageTitle: 'React Components',
-    showCars:  false,
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      cars: [
+        {name: 'Ford', year: 2012},
+        {name: 'Audi', year: 2016},
+        {name: 'Mazda', year: 2012},
+      ],
+      pageTitle: 'React Components',
+      showCars:  false,
+    }
   }
   
   handleButtonCkick = (newTitle) => {
@@ -23,15 +28,6 @@ class App extends Component {
   changeName = (name, index) => {
     const car = this.state.cars[index];
     car.name = name;
-    
-    //not allowed 
-    //this.state.cars[index] = car;
-    
-    //not allowed, because we get link
-    //const cars = this.state.cars;
-
-    //1. cloning 
-    //const cars = this.state.cars.concat(); 
     
     //modern
     const cars = [...this.state.cars];
