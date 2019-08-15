@@ -1,7 +1,46 @@
 import React, {Component} from 'react';
 
 class Car extends Component {
+
+    constructor(props){
+        super(props);
+        console.log('Car constructor', props);
+    }
+
+    componentDidMount(){
+        console.log('Car componentDidMount - after render')
+      }
+
+    UNSAFE_componentWillReceiveProps(nextProps){
+        console.log('Car componentWillReceiveProps', nextProps);
+        //для синхронизации локального стейт с новыми пропс
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        //можно сделать проверку и вернгуть false 
+        //не будут вызываться остальные апдейт методы и рендер 
+        //(чтобы удучшить перфоманс, не тратить силы на отрисовки)
+        console.log('Car shouldComponentUpdate', nextProps, nextState);
+        //например, тримить пробелы
+        return nextProps.name.trim() !== this.props.name.trim();
+    }
+
+    UNSAFE_componentWillUpdate(nextProps, nextState){
+        //если true в предыдущзем методе
+        //какая-то синхронизхация лок стейт с новыми пропс 
+        console.log('Car componentWillUpdate', nextProps, nextState);
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log('Car componentDidUpdate', prevProps, prevState);
+    }
+
+    componentWillUnmount(){
+        console.log('Car componentWillUnmount');
+    }
+
     render (){
+        console.log('Car render');
         return(
             <div style={{
                     border: '1px solid #ccc',
@@ -17,5 +56,6 @@ class Car extends Component {
         )
     }
 }
+
 
 export default Car
