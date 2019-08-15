@@ -30,9 +30,27 @@ class Car extends Component {
         //какая-то синхронизхация лок стейт с новыми пропс 
         console.log('Car componentWillUpdate', nextProps, nextState);
     }
+    
+    //componentWillUpdate
+    //опасность: если обратимся this.state, но компонент еще нге отрисован
+
+    //SOLUTION > 16.3
+    static getDerivedStateFromProps(nextProps, prevState){
+        //нет доступа к this
+        console.log('Car getDerivedStateFromProps', nextProps, prevState);
+        return {
+            prevState
+        }
+    }
 
     componentDidUpdate(prevProps, prevState){
         console.log('Car componentDidUpdate', prevProps, prevState);
+    }
+
+    getSnapshotBeforeUpdate(){
+        //после рендер
+        //можем получить dom дерево до обновления
+        console.log('C ar getSnapshotBeforeUpdate');
     }
 
     componentWillUnmount(){
