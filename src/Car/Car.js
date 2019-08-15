@@ -7,14 +7,15 @@ class Car extends Component {
 
     constructor(props) {
         super(props);
-   
+        this.inputReference = React.createRef;
         console.log('Car constructor', props);
     }
 
     componentDidMount() {
         console.log('Car componentDidMount - after render')
         if(this.props.index === 0){
-            this.inputReference.focus();
+            //не заработало
+            //this.inputReference.focus()
         }
     }
 
@@ -77,7 +78,7 @@ class Car extends Component {
             <h3 > Car name: { this.props.name } </h3> 
             <p> Year: <strong> { this.props.year } </strong></p>
             <input 
-                ref = {(inputReference) => this.inputReference = inputReference}
+                ref = {this.inputReference}
                 type = "text" 
                 onChange = { this.props.onChangeName } 
                 value = { this.props.name }/> 
