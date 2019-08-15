@@ -35,23 +35,23 @@ class Car extends Component {
     //опасность: если обратимся this.state, но компонент еще нге отрисован
 
     //SOLUTION > 16.3
-    static getDerivedStateFromProps(nextProps, prevState){
-        //нет доступа к this
-        console.log('Car getDerivedStateFromProps', nextProps, prevState);
-        return {
-            prevState
-        }
-    }
+    // static getDerivedStateFromProps(nextProps, prevState){
+    //     //нет доступа к this
+    //     console.log('Car getDerivedStateFromProps', nextProps, prevState);
+    //     return {
+    //         prevState
+    //     }
+    // }
 
     componentDidUpdate(prevProps, prevState){
         console.log('Car componentDidUpdate', prevProps, prevState);
     }
 
-    getSnapshotBeforeUpdate(){
-        //после рендер
-        //можем получить dom дерево до обновления
-        console.log('C ar getSnapshotBeforeUpdate');
-    }
+    // getSnapshotBeforeUpdate(){
+    //     //вызывается после рендер
+    //     //можем получить dom дерево до обновления
+    //     console.log('C ar getSnapshotBeforeUpdate');
+    // }
 
     componentWillUnmount(){
         console.log('Car componentWillUnmount');
@@ -59,6 +59,11 @@ class Car extends Component {
 
     render (){
         console.log('Car render');
+
+        if(Math.random() > 0.7){
+            throw new Error('Car random failed')
+        }
+
         return(
             <div style={{
                     border: '1px solid #ccc',
