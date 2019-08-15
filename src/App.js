@@ -60,11 +60,11 @@ class App extends Component {
   }
 
   UNSAFE_componentWillMount(){
-    console.log('App componentWillMount - before render. вызывается когда произошла инициализация, параметры подготогвлены и готовы чтобы их положили в дом дерево. Нельзя изменять state т.к. html не готов. нел недо обращаться к бэку')
+    console.log('App componentWillMount - before render')
   }
 
   componentDidMount(){
-    console.log('App componentDidMount - after render. Весь html уже готов и можно с ним работать ')
+    console.log('App componentDidMount - after render')
   }
 
   // componentWillUpdate(){
@@ -72,7 +72,7 @@ class App extends Component {
   // }
 
   render (){
-    console.log('App render - put in DOM-tree. ю формирует конечный jsx к-й будет преобразован в видке html');
+    console.log('App render');
     const divStyle = {
       textAlign: 'center',
     }
