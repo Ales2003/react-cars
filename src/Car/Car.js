@@ -9,7 +9,7 @@ const Car = props => {
     return(
         <div className={'Car'}
 
-            onClick={()=> props.history.push('/cars/' + props.name.toLowerCase())}
+            onClick={()=> props.history.push('/cars1/' + props.name)}
 >
             <h3>Car name: {props.name}</h3>
             <p>Year: <strong>{props.year}</strong></p>

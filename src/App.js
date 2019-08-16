@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Route, NavLink} from 'react-router-dom'
+import {Route, NavLink, Switch} from 'react-router-dom'
 import Car from  './Car/Car';
 import Cars from  './Cars/Cars';
 import About from  './About/About';
@@ -151,15 +151,17 @@ class App extends Component {
           2 exact - метка точного совпадения
           3. что должно рендериться (jsx compoonent)_
           */}
+          <Switch>
           <Route path={"/"} exact render ={()=><h1>Home Page</h1>}/>
           {/* можно передать колбэк функцию которая возвратит компонент */}
           <Route path={"/about"} exact render ={()=><About />}/>
           {/* или спец аттрибут component */}
           <Route path={"/about_second_way"} exact component={About}/>
-          <Route path={"/cars"} exact render ={()=>cars}/>
-          <Route path={"/cars1"} component ={Cars}/>
-          <Route path={"/cars/:name"} exact component ={CarDetail}/>
+          <Route path={"/cars"} render ={()=>cars}/>
           
+          <Route path={"/cars1/:name"} component ={CarDetail}/>
+          <Route path={"/cars1"} component ={Cars}/>
+          </Switch>
       </div>
     )
   }
