@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Car from  './Car/Car';
+import About from  './About/About';
 import ErrorBoundary from  './ErrorBoundary/ErrorBoundary';
-import Counter from './Counter/Counter'
+// import Counter from './Counter/Counter'
 
 export const ClickedContext = React.createContext(false)
 
@@ -15,12 +16,13 @@ class App extends Component {
     this.state = {
       clicked: false,
       cars: [
-        {name: 'Ford', year: {}},
+        //{name: 'Ford', year: {}},
         {name: 'Audi', year: 2016},
+        {name: 'Ford', year: 2019},
         {name: 'Mazda', year: 2012},
       ],
       pageTitle: 'React Components',
-      showCars:  false,
+      showCars:  true,
     }
   }
   
@@ -103,34 +105,37 @@ class App extends Component {
     return (
       <div style={divStyle}>
 
-        {/* <nav className="nav">
+        <nav className="nav">
           <ul>
             <li>
               <a href="/">Home</a>
             </li>
+            <li>
+              <a href="/about">About</a>
+            </li>
           </ul>
-        </nav> */}
+        </nav>
+     
 
-        {/* <h1>{this.state.pageTitle}</h1> */}
-        <h1>{this.props.title}</h1>
-
-
-        <ClickedContext.Provider value={this.state.clicked}>
+        {/* <ClickedContext.Provider value={this.state.clicked}>
         <Counter />
-        </ClickedContext.Provider>
+        </ClickedContext.Provider> */}
         
         <hr/>
 
-        <button
+        {/* <button
           style={{marginTop: "20px"}} 
           onClick={this.toggleCarsHandler}>
             Toggle cars
-          </button>
+          </button> */}
 
-          <button onClick={() => this.setState({clicked:true})}>
+          {/* <button onClick={() => this.setState({clicked:true})}>
             Change clicked
-          </button>
+          </button> */}
 
+          <About />
+          <h1>Cars</h1>
+          
           { cars}
       </div>
     )
