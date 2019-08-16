@@ -11,7 +11,7 @@ export default class Counter extends Component{
         //     counter: this.state.counter + 1
         // })
 
-        //если setState принимает ф-ю, то она в качестве параметра принимает предыдущий стейт имеет вид 
+        //если setState принимает ф-ю, то она в качестве параметра принимает предыдущий стейт
         this.setState((prevState) => {
             return {
                 counter: prevState.counter + 1
