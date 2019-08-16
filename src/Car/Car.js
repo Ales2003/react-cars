@@ -14,8 +14,9 @@ class Car extends Component {
 
     componentDidMount(){
         console.log('Car componentDidMount - after render')
-        if(this.props.index === 0){
-            this.inputReference.focus()
+        if(this.props.index === 1){
+            //doesn't work
+            //this.inputReference.focus()
         }
       }
 

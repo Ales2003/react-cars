@@ -11,6 +11,7 @@ class App extends Component {
     super(props)
     console.log('App constructor2');
     this.state = {
+      clicked: false,
       cars: [
         {name: 'Ford', year: {}},
         {name: 'Audi', year: 2016},
@@ -98,18 +99,24 @@ class App extends Component {
     }
 
     return (
-      <div style={divStyle} >
+      <div style={divStyle}>
         {/* <h1>{this.state.pageTitle}</h1> */}
         <h1>{this.props.title}</h1>
 
-        <Counter />
+        <Counter clicked = {this.state.clicked}/>
         <hr/>
 
         <button
-        style={{marginTop: "20px"}} 
-          onClick={this.toggleCarsHandler}
-          >Toggle cars</button>
-        { cars}
+          style={{marginTop: "20px"}} 
+          onClick={this.toggleCarsHandler}>
+            Toggle cars
+          </button>
+
+          <button onClick={() => this.setState({clicked:true})}>
+            Change clicked
+          </button>
+
+          { cars}
       </div>
     )
   }
