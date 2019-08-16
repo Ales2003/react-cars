@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Route, NavLink, Switch} from 'react-router-dom'
+import {Route, NavLink, Switch, Redirect} from 'react-router-dom'
 import Car from  './Car/Car';
 import Cars from  './Cars/Cars';
 import About from  './About/About';
@@ -161,6 +161,8 @@ class App extends Component {
           
           <Route path={"/cars1/:name"} component ={CarDetail}/>
           <Route path={"/cars1"} component ={Cars}/>
+          <Route render={()=> <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>}/>
+          {/* <Redirect to ={'/cars'} /> */}
           </Switch>
       </div>
     )
