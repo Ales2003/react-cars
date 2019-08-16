@@ -25,7 +25,8 @@ export default class Counter extends Component{
             <Auxiliary>
                 <h2>Counter {this.state.counter}</h2>
                 {/* излишний парпаметр, просто проброс вниз */}
-                <Counter2 clicked = {this.props.clicked}/>
+                {/* избавились от необходимости проброситбь параметр вниз */}
+                <Counter2 />
                 <button onClick={this.addCounter}>+</button>
                 <button onClick={() => this.setState({counter: this.state.counter - 1})}>-</button>
             </Auxiliary>

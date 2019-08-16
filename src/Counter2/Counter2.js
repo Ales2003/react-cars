@@ -1,4 +1,5 @@
 import React from 'react'
+import {ClickedContext} from '../App'
 
 export default props  => {
     return (
@@ -8,8 +9,9 @@ export default props  => {
             margin: '0 auto',
             }}>
             <h3>Counter 2</h3>
-            {props.clicked ? <p>Clicked</p> :  null}
-            
+            <ClickedContext.Consumer>
+                {clicked => clicked ? <p>Clicked</p> :  null}
+            </ClickedContext.Consumer>
         </div>
     )
 }

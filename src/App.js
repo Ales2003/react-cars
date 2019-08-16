@@ -4,6 +4,8 @@ import Car from  './Car/Car';
 import ErrorBoundary from  './ErrorBoundary/ErrorBoundary';
 import Counter from './Counter/Counter'
 
+export const ClickedContext = React.createContext(false)
+
 class App extends Component {
 
   constructor(props){
@@ -100,10 +102,23 @@ class App extends Component {
 
     return (
       <div style={divStyle}>
+
+        {/* <nav className="nav">
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+          </ul>
+        </nav> */}
+
         {/* <h1>{this.state.pageTitle}</h1> */}
         <h1>{this.props.title}</h1>
 
-        <Counter clicked = {this.state.clicked}/>
+
+        <ClickedContext.Provider value={this.state.clicked}>
+        <Counter />
+        </ClickedContext.Provider>
+        
         <hr/>
 
         <button
