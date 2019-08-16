@@ -1,0 +1,46 @@
+import React, {Component} from 'react'
+import Car from '../Car/Car'
+
+export default class Cars extends Component {
+    state = {
+        cars: [
+            //{name: 'Ford', year: {}},
+            {name: 'Audi', year: 2016},
+            {name: 'Ford', year: 2019},
+            {name: 'Mazda', year: 2012},
+          ],
+    }
+
+    goToHomeePage = () => {
+        this.props.history.push({
+            pathname: '/',
+        })
+    }
+
+    render(){
+        console.log(this.props);
+
+        return (
+            <div style={{
+                width: 400,
+                margin: 'auto',
+                paddingTop: '20px'
+            }}>
+
+                <button onClick ={this.goToHomeePage}>Go to Home Page</button>
+
+                <hr/>
+                {
+                    this.state.cars.map((car, index) => {
+                        return (
+                            <Car 
+                                key={index}
+                                name = {car.name} 
+                                year = {car.year}
+                            />
+                        )    
+                    })}
+            </div> 
+        )
+    }
+}

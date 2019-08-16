@@ -68,6 +68,7 @@ class Car extends Component {
 
     render (){
         console.log('Car render');
+        console.log(this.props);
 
         // if(Math.random() > 0.7){
         //     throw new Error('Car random failed')

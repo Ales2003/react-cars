@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {Route, NavLink} from 'react-router-dom'
 import Car from  './Car/Car';
+import Cars from  './Cars/Cars';
 import About from  './About/About';
 import ErrorBoundary from  './ErrorBoundary/ErrorBoundary';
 // import Counter from './Counter/Counter'
@@ -126,11 +127,13 @@ class App extends Component {
             </li>
             <li>
               <NavLink to={{
-                pathname:"/cars",
-                search:'&a=1&b=2',
-                hash: 'wfm'
-
+                pathname:"/cars"
               }}>Cars</NavLink>
+            </li>
+            <li>
+              <NavLink to={{
+                pathname:"/cars1"
+              }}>Cars1</NavLink>
             </li>
           </ul>
         </nav>
@@ -153,6 +156,8 @@ class App extends Component {
           {/* или спец аттрибут component */}
           <Route path={"/about_second_way"} exact component={About}/>
           <Route path={"/cars"} exact render ={()=>cars}/>
+          <Route path={"/cars1"} component ={Cars}/>
+          
       </div>
     )
   }
