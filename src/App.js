@@ -12,6 +12,10 @@ export const ClickedContext = React.createContext(false)
 
 class App extends Component {
 
+   state = {
+    isLoggedIn: false
+  }
+
   constructor(props){
     console.log('App constructor1');
     super(props)
@@ -139,6 +143,12 @@ class App extends Component {
           </ul>
         </nav>
      
+        <hr/>
+        <div style={{textAlign: 'center'}}>
+          <h3>Is logged in {this.state.isLoggedIn ? 'TRUE' : 'FALSE'}</h3>
+          <button onClick={()=> this.setState({isLoggedIn: true})}>Login</button>
+        </div>
+
 
         {/* <ClickedContext.Provider value={this.state.clicked}>
         <Counter />
@@ -154,15 +164,20 @@ class App extends Component {
           <Switch>
           <Route path={"/"} exact render ={()=><h1>Home Page</h1>}/>
           {/* можно передать колбэк функцию которая возвратит компонент */}
-          <Route path={"/about"} exact render ={()=><About />}/>
+          {
+            this.state.isLoggedIn ? 
+            <Route path={"/about"} exact render ={()=><About />}/> :
+            null
+          }
+          
           {/* или спец аттрибут component */}
           <Route path={"/about_second_way"} exact component={About}/>
           <Route path={"/cars"} render ={()=>cars}/>
           
           <Route path={"/cars1/:name"} component ={CarDetail}/>
           <Route path={"/cars1"} component ={Cars}/>
-          <Route render={()=> <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>}/>
-          <Redirect to ={'/cars'} />
+          {/* <Route render={()=> <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>}/> */}
+          <Redirect to ={()=><h1>Home Page</h1>} />
           </Switch>
       </div>
     )
