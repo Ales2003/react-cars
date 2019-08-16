@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import {Route} from 'react-router-dom'
 import Car from  './Car/Car';
 import About from  './About/About';
 import ErrorBoundary from  './ErrorBoundary/ErrorBoundary';
@@ -113,6 +114,12 @@ class App extends Component {
             <li>
               <a href="/about">About</a>
             </li>
+            <li>
+              <a href="/about_second_way">About second way</a>
+            </li>
+            <li>
+              <a href="/cars">Cars</a>
+            </li>
           </ul>
         </nav>
      
@@ -122,21 +129,18 @@ class App extends Component {
         </ClickedContext.Provider> */}
         
         <hr/>
-
-        {/* <button
-          style={{marginTop: "20px"}} 
-          onClick={this.toggleCarsHandler}>
-            Toggle cars
-          </button> */}
-
-          {/* <button onClick={() => this.setState({clicked:true})}>
-            Change clicked
-          </button> */}
-
-          <About />
-          <h1>Cars</h1>
-          
-          { cars}
+          {/* регистрация роута
+          1. путь
+          localhost: 3000
+          2 exact - метка точного совпадения
+          3. что должно рендериться (jsx compoonent)_
+          */}
+          <Route path={"/"} exact render ={()=><h1>Home Page</h1>}/>
+          {/* можно передать колбэк функцию которая возвратит компонент */}
+          <Route path={"/about"} exact render ={()=><About />}/>
+          {/* или спец аттрибут component */}
+          <Route path={"/about_second_way"} exact component={About}/>
+          <Route path={"/cars"} exact render ={()=>cars}/>
       </div>
     )
   }
