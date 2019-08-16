@@ -4,6 +4,7 @@ import {Route, NavLink} from 'react-router-dom'
 import Car from  './Car/Car';
 import Cars from  './Cars/Cars';
 import About from  './About/About';
+import CarDetail from  './CarDetail/CarDetail';
 import ErrorBoundary from  './ErrorBoundary/ErrorBoundary';
 // import Counter from './Counter/Counter'
 
@@ -157,6 +158,7 @@ class App extends Component {
           <Route path={"/about_second_way"} exact component={About}/>
           <Route path={"/cars"} exact render ={()=>cars}/>
           <Route path={"/cars1"} component ={Cars}/>
+          <Route path={"/cars/:name"} exact component ={CarDetail}/>
           
       </div>
     )
