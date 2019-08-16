@@ -151,7 +151,7 @@ class App extends Component {
           2 exact - метка точного совпадения
           3. что должно рендериться (jsx compoonent)_
           */}
-          {/* <Switch> */}
+          <Switch>
           <Route path={"/"} exact render ={()=><h1>Home Page</h1>}/>
           {/* можно передать колбэк функцию которая возвратит компонент */}
           <Route path={"/about"} exact render ={()=><About />}/>
@@ -161,9 +161,9 @@ class App extends Component {
           
           <Route path={"/cars1/:name"} component ={CarDetail}/>
           <Route path={"/cars1"} component ={Cars}/>
-          {/* <Route render={()=> <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>}/> */}
-          <Redirect from={"/about"} to ={'/cars'} />
-          {/* </Switch> */}
+          <Route render={()=> <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>}/>
+          <Redirect to ={'/cars'} />
+          </Switch>
       </div>
     )
   }
