@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Route} from 'react-router-dom'
+import {Route, NavLink} from 'react-router-dom'
 import Car from  './Car/Car';
 import About from  './About/About';
 import ErrorBoundary from  './ErrorBoundary/ErrorBoundary';
@@ -107,18 +107,30 @@ class App extends Component {
       <div style={divStyle}>
 
         <nav className="nav">
-          <ul>
+          <ul className="ul">
             <li>
-              <a href="/">Home</a>
+              <NavLink to="/" exact>Home</NavLink>
             </li>
             <li>
-              <a href="/about">About</a>
+              <NavLink 
+                to="/about"
+                exact 
+                activeClassName={'wfm-active'}>About</NavLink>
             </li>
             <li>
-              <a href="/about_second_way">About second way</a>
+              <NavLink 
+                to="/about_second_way"
+                activeStyle={{
+                  color:'blue'
+                }}>About second way</NavLink>
             </li>
             <li>
-              <a href="/cars">Cars</a>
+              <NavLink to={{
+                pathname:"/cars",
+                search:'&a=1&b=2',
+                hash: 'wfm'
+
+              }}>Cars</NavLink>
             </li>
           </ul>
         </nav>

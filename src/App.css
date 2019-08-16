@@ -1,0 +1,19 @@
+.nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style:none;
+    margin: 0;
+    padding: 20px;
+
+    
+}
+
+.ul li{
+    margin-right: 15px;
+}
+
+.ul li>a.active,a.wfm-active{
+        font-weight: bold;
+        color:red;
+}
